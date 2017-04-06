@@ -15,7 +15,7 @@ except pkg_resources.DistributionNotFound:
     PROTOBUF_VERSION = 'unknown'
 
 if PROTOBUF_VERSION.startswith('3'):
-    from . import pb2 as pb
+    from . import proto_pb2 as pb
 else:
     from . import pb
 
