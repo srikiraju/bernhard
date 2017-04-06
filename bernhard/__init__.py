@@ -3,12 +3,22 @@
 import logging
 log = logging.getLogger(__name__)
 
+import pkg_resources
 import socket
 import ssl
 import struct
 import sys
 
-from . import pb
+try:
+    PROTOBUF_VERSION = pkg_resources.get_distribution('protobuf').version
+except pkg_resources.DistributionNotFound:
+    PROTOBUF_VERSION = 'unknown'
+
+if PROTOBUF_VERSION.startswith('3'):
+    from . import pb2 as pb
+else:
+    from . import pb
+
 
 string_type = str
 if sys.version_info[1] < 3:
